@@ -1,0 +1,21 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // posts: 읽기만 공개, 쓰기/수정/삭제는 서버 전용
+    match /posts/{postId} {
+      allow read: if true;
+      allow write, update, delete: if false;
+    }
+    
+    // reports: 모든 접근 차단 (서버 전용)
+    match /reports/{reportId} {
+      allow read, write, update, delete: if false;
+    }
+    
+    // rateLimits: 모든 접근 차단 (서버 전용)
+    match /rateLimits/{rateLimitId} {
+      allow read, write, update, delete: if false;
+    }
+  }
+}

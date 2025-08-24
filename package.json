@@ -1,0 +1,49 @@
+{
+  "name": "anonymous-board-mvp",
+  "version": "1.0.0",
+  "description": "모바일 익명 게시판 MVP - Firebase 일체형 아키텍처",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "functions"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:web\" \"npm run dev:emulators\"",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "dev:emulators": "firebase emulators:start --only functions,firestore",
+    "build": "npm run build --workspaces",
+    "build:web": "npm run build --workspace=apps/web",
+    "build:functions": "npm run build --workspace=functions",
+    "deploy": "firebase deploy",
+    "deploy:hosting": "firebase deploy --only hosting",
+    "deploy:functions": "firebase deploy --only functions",
+    "deploy:github": "npm run build && firebase deploy",
+    "test": "npm run test --workspaces",
+    "test:web": "npm run test --workspace=apps/web",
+    "test:functions": "npm run test --workspace=functions",
+    "clean": "npm run clean --workspaces && rm -rf dist build",
+    "clean:web": "rm -rf apps/web/dist",
+    "clean:functions": "rm -rf functions/lib"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "firebase-tools": "^13.4.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/anonymous-board-mvp.git"
+  },
+  "keywords": [
+    "anonymous",
+    "board",
+    "firebase",
+    "react",
+    "typescript",
+    "vite"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
